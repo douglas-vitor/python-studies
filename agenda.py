@@ -47,27 +47,30 @@ def imprimir_menu():
     print('4 - Editar contato.')
     print('5 - Excluir contato.')
     print('0 - Fechar agenda.')
+    print('-------------------------------------------\n')
 
+while True:
+    imprimir_menu()
 
-opcao = input('Escolha uma opção: ')
+    opcao = input('Escolha uma opção: ')
+    if opcao == '1':
+        mostrar_contatos()
+    elif opcao == '2':
+        contato = input('Digite o nome do contato: ')
+        buscar_contato(contato)
+    elif opcao == '3' or opcao == '4':
+        contato = input('Digite o nome do contato: ')
+        telefone = input('Digite o telefone do contato: ')
+        email = input('Digite o email do contato: ')
+        endereco = input('Digite o endereço do contato: ')
 
-if opcao == '1':
-    mostrar_contatos()
-elif opcao == '2':
-    contato = input('Digite o nome do contato: ')
-    buscar_contato(contato)
-elif opcao == '3' or opcao == '4':
-    contato = input('Digite o nome do contato: ')
-    telefone = input('Digite o telefone do contato: ')
-    email = input('Digite o email do contato: ')
-    endereco = input('Digite o endereço do contato: ')
+        incluir_editar_contato(contato, telefone, email, endereco)
+    elif opcao == '5':
+        contato = input('Digite o nome do contato: ')
 
-    incluir_editar_contato(contato, telefone, email, endereco)
-elif opcao == '5':
-    contato = input('Digite o nome do contato: ')
-
-    excluir_contato(contato)
-elif opcao == '0':
-    print('Fechando programa!')
-else:
-    print('Opção inválida.')
+        excluir_contato(contato)
+    elif opcao == '0':
+        print('\n>>> Fechando programa! <<<\n')
+        break
+    else:
+        print('\n>>> Opção inválida. <<<\n')
