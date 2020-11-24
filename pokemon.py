@@ -29,6 +29,3 @@ class PokemonAgua(Pokemon):
     tipo = 'agua'
     def atacar(self, pokemon):
         print('{} lançou um jato dagua em {}!'.format(self, pokemon))
-
-class Pikachu(PokemonEletrico):
-    especie = 'Pikachu'
