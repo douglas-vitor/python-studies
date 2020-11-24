@@ -1,6 +1,6 @@
 AGENDA = {}
 
-AGENDA['Guilherme'] = {
+'''AGENDA['Guilherme'] = {
     'telefone': '9999999',
     'email': 'guigui@solyd.com.br',
     'endereco': 'Av. 1',
@@ -10,8 +10,7 @@ AGENDA['Maria'] = {
     'telefone': '99977779',
     'email': 'maria@solyd.com.br',
     'endereco': 'Av. 2',
-}
-
+}'''
 
 def mostrar_contatos():
     if AGENDA:
@@ -22,6 +21,7 @@ def mostrar_contatos():
 
 
 def buscar_contato(contato):
+
     try:
         print('Nome:', contato)
         print('Telefone:', AGENDA[contato]['telefone'])
@@ -43,19 +43,20 @@ def ler_detalhes_contato():
 
 
 def incluir_editar_contato(contato, telefone, email, endereco):
-    
-    
     AGENDA[contato] = {
         'telefone': telefone,
         'email': email,
         'endereco': endereco,
     }
+    salvar()
     print('\n>>> Contato {} adicionado/editado com sucesso! <<<\n'.format(contato))
 
 
 def excluir_contato(contato):
+
     try:
         AGENDA.pop(contato)
+        salvar()
         print('\n>>> Contato {} excluído com sucesso! <<<\n'.format(contato))
     except KeyError:
         print('\n>>> Contato {} inexistente. <<<\n'.format(contato))
@@ -64,10 +65,10 @@ def excluir_contato(contato):
         print('>>> {}'.format(err))
 
 
-def exportar_contatos():
+def exportar_contatos(nome_do_arquivo):
+
     try:
-        with open('agenda.csv', 'w') as arquivo:
-            arquivo.write('nome; telefone; email; endereco\n')
+        with open(nome_do_arquivo, 'w') as arquivo:
             for contato in AGENDA:
                 telefone = AGENDA[contato]['telefone']
                 email = AGENDA[contato]['email']
@@ -79,6 +80,7 @@ def exportar_contatos():
 
 
 def importar_contatos(nome_do_arquivo):
+
     try:
         with open(nome_do_arquivo, 'r') as arquivo:
             linhas = arquivo.readlines()
@@ -96,8 +98,37 @@ def importar_contatos(nome_do_arquivo):
     except Exception as err:
         print('\n>>> Um erro ocorreu ao importar contatos. <<<\n')
         print(err)
-        
 
+
+def salvar():
+    exportar_contatos('database.csv')
+
+
+def carregar():
+    try:
+        with open('database.csv', 'r') as arquivo:
+            linhas = arquivo.readlines()
+            for linha in linhas:
+                detalhes = linha.strip().split(';')
+                nome = detalhes[0]
+                telefone = detalhes[1]
+                email = detalhes[2]
+                endereco = detalhes[3]
+
+                AGENDA[nome] = {
+                    'telefone': telefone,
+                    'email': email,
+                    'endereco': endereco,
+                }
+        print('\n>>> Database carregada com sucesso! <<<')
+        print('>>> {} Contatos carregados! <<<\n'.format(len(AGENDA)))
+    except IOError:
+        print('\n>>> Um erro ocorreu ao abrir database. <<<\n')
+    except FileNotFoundError:
+        print('\n>>> Um erro ocorreu ao abrir database. <<<\n')
+    except Exception as err:
+        print('\n>>> Um erro ocorreu ao carregar database. <<<\n')
+        print(err)
 
 
 def imprimir_menu():
@@ -111,6 +142,8 @@ def imprimir_menu():
     print('0 - Fechar agenda.')
     print('-------------------------------------------\n')
 
+
+carregar()
 while True:
     imprimir_menu()
 
@@ -145,7 +178,8 @@ while True:
         contato = input('Digite o nome do contato: ')
         excluir_contato(contato)
     elif opcao == '6':
-        exportar_contatos()
+        nome_do_arquivo = input('Digite o nome do arquivo a ser salvo: ')
+        exportar_contatos(nome_do_arquivo)
     elif opcao == '7':
         nome_do_arquivo = input('Digite o nome do arquivo a ser aberto: ')
         importar_contatos(nome_do_arquivo)
