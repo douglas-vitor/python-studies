@@ -14,19 +14,32 @@ AGENDA['Maria'] = {
 
 
 def mostrar_contatos():
-    for contato in AGENDA:
-        buscar_contato(contato)
+    if AGENDA:
+        for contato in AGENDA:
+            buscar_contato(contato)
+    else:
+        print('\n>>> Agenda vazia. <<<\n')
 
 
 def buscar_contato(contato):
-    print('Nome:', contato)
-    print('Telefone:', AGENDA[contato]['telefone'])
-    print('Email:', AGENDA[contato]['email'])
-    print('Endereço:', AGENDA[contato]['endereco'])
-    print('-------------------------------------------\n')
+    try:
+        print('Nome:', contato)
+        print('Telefone:', AGENDA[contato]['telefone'])
+        print('Email:', AGENDA[contato]['email'])
+        print('Endereço:', AGENDA[contato]['endereco'])
+        print('-------------------------------------------\n')
+    except KeyError:
+        print('\n>>> Contato {} inexistente. <<<\n'.format(contato))
+    except Exception as err:
+        print('\n>>> Um erro inesperado aconteceu. <<<\n')
+        print('>>> {}'.format(err))
 
 
-def incluir_editar_contato(contato, telefone, email, endereco):
+def incluir_editar_contato(contato):
+    telefone = input('Digite o telefone do contato: ')
+    email = input('Digite o email do contato: ')
+    endereco = input('Digite o endereço do contato: ')
+    
     AGENDA[contato] = {
         'telefone': telefone,
         'email': email,
@@ -36,8 +49,14 @@ def incluir_editar_contato(contato, telefone, email, endereco):
 
 
 def excluir_contato(contato):
-    AGENDA.pop(contato)
-    print('\n>>> Contato {} excluído com sucesso! <<<\n'.format(contato))
+    try:
+        AGENDA.pop(contato)
+        print('\n>>> Contato {} excluído com sucesso! <<<\n'.format(contato))
+    except KeyError:
+        print('\n>>> Contato {} inexistente. <<<\n'.format(contato))
+    except Exception as err:
+        print('\n>>> Um erro inesperado aconteceu. <<<\n')
+        print('>>> {}'.format(err))
 
 
 def imprimir_menu():
@@ -58,16 +77,27 @@ while True:
     elif opcao == '2':
         contato = input('Digite o nome do contato: ')
         buscar_contato(contato)
-    elif opcao == '3' or opcao == '4':
+    elif opcao == '3':
         contato = input('Digite o nome do contato: ')
-        telefone = input('Digite o telefone do contato: ')
-        email = input('Digite o email do contato: ')
-        endereco = input('Digite o endereço do contato: ')
 
-        incluir_editar_contato(contato, telefone, email, endereco)
+        try:
+            AGENDA[contato]
+            print('\n>>> Contato: {} já existe. <<<\n'.format(contato))
+        except KeyError:
+            incluir_editar_contato(contato)
+
+    elif opcao == "4":
+        contato = input('Digite o nome do contato: ')
+
+        try:
+            AGENDA[contato]
+            print('\n>>> Editando contato: {}. <<<\n'.format(contato))
+            incluir_editar_contato(contato)
+        except KeyError:
+            print('\n>>> Contato {} não existe. <<<\n'.format(contato))
+
     elif opcao == '5':
         contato = input('Digite o nome do contato: ')
-
         excluir_contato(contato)
     elif opcao == '0':
         print('\n>>> Fechando programa! <<<\n')
