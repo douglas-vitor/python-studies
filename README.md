@@ -7,3 +7,4 @@
 ###### Projetos do curso Python profissinoal da [Solyd](https://solyd.com.br)
 
 1. Agenda de contatos
+2. Pokemon game
