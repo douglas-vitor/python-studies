@@ -1,4 +1,5 @@
 import random
+
 from pokemon import *
 
 NOMES = ['Joao', 'Pedro', 'Guilherme', 'Jefferson', 'Jofrey',
@@ -11,6 +12,7 @@ POKEMONS = [
     PokemonEletrico('Pikachu'),
     PokemonEletrico('Raiochu'),
 ]
+
 
 class Pessoa:
 
@@ -33,12 +35,14 @@ class Pessoa:
         else:
             print('{} não tem nenhum pokemon.'.format(self))
 
+
 class Player(Pessoa):
     tipo = 'player'
 
     def capturar(self, pokemon):
         self.pokemons.append(pokemon)
         print('{} capturou {}!'.format(self, pokemon))
+
 
 class Inimigo(Pessoa):
     tipo = 'inimigo'
@@ -49,10 +53,3 @@ class Inimigo(Pessoa):
                 pokemons.append(random.choice(POKEMONS))
         
         super().__init__(nome=None, pokemons=pokemons)
-
-        
-
-
-inimigo = Inimigo()
-print(inimigo)
-inimigo.mostrar_pokemons()

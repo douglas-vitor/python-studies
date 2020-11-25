@@ -1,6 +1,7 @@
 import random
 
 class Pokemon:
+
     def __init__(self, especie, level=None, nome=None):
         self.especie = especie
         if level:
@@ -25,10 +26,12 @@ class PokemonEletrico(Pokemon):
     def atacar(self, pokemon):
         print('{} lançou um raio do trovão em {}!'.format(self, pokemon))
 
+
 class PokemonFogo(Pokemon):
     tipo = 'fogo'
     def atacar(self, pokemon):
         print('{} lançou uma bola de fogo em {}!'.format(self, pokemon))
+
 
 class PokemonAgua(Pokemon):
     tipo = 'agua'
