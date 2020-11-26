@@ -29,5 +29,9 @@ def escolher_pokemon_inicial(player):
             print('Escolha inválida.')
 
 player = Player('Douglas')
-escolher_pokemon_inicial(player)
-player.mostrar_pokemons()
+player.capturar(PokemonEletrico('Pikachu', level=1))
+
+inimigo1 = Inimigo(pokemons=[PokemonAgua('Squirtle', level=1)])
+print(inimigo1)
+
+player.batalhar(inimigo1)
