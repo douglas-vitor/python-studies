@@ -1,2 +1,5 @@
 __pycache__/
 database.db
+Pokemon_game/database.db
+Pokemon_game/__pycache__/
+
