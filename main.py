@@ -29,9 +29,10 @@ def escolher_pokemon_inicial(player):
             print('Escolha inválida.')
 
 player = Player('Douglas')
+player.mostrar_dinheiro()
 player.capturar(PokemonEletrico('Pikachu', level=1))
 
-inimigo1 = Inimigo(pokemons=[PokemonAgua('Squirtle', level=1)])
-print(inimigo1)
+'''inimigo1 = Inimigo(pokemons=[PokemonAgua('Squirtle', level=1)])
+player.batalhar(inimigo1)'''
 
-player.batalhar(inimigo1)
+player.explorar()
