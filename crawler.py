@@ -1,12 +1,12 @@
+import re
 import requests
-
 from bs4 import BeautifulSoup
 
 
 DOMINIO = "https://django-anuncios.solyd.com.br"
 URL_AUTOMOVEIS = "https://django-anuncios.solyd.com.br/automoveis/"
 
-def buscar(url):
+def requisicao(url):
     try:
         res = requests.get(url)
         if res.status_code == 200:
@@ -28,19 +28,45 @@ def parsing(res_html):
 
 
 def encontrar_links(soup):
-    cards_pai = soup.find("div", class_="ui three doubling link cards")
-    cards = cards_pai.find_all("a")
+    try:
+        cards_pai = soup.find("div", class_="ui three doubling link cards")
+        cards = cards_pai.find_all("a")
+    except:
+        print("Erro ao encontrar links.")
+        return None
+
     links = []
     for card in cards:
-        link = card['href']
-        links.append(link)
+        try:
+            link = card['href']
+            links.append(link)
+        except:
+            pass
+
     return links
 
 
-resposta = buscar(URL_AUTOMOVEIS)
-if resposta:
-    soup = parsing(resposta)
-    if soup:
-        links = encontrar_links(soup)
+def encontrar_telefones(soup):
+    try:
+        descricao = soup.find_all("div", class_="sixteen wide column")[2].p.get_text().strip()
+    except:
+        print("Erro ao encontrar descrição.")
+        return None
+    
+    regex = re.findall(r"\(?0?([1-9]{2})[ \-\.\)]{0,2}(9[ \-\.]?\d{4})[ \-\.]?(\d{4})", descricao)
+    if regex:
+        return regex
+    
+
+
+resposta_busca = requisicao(URL_AUTOMOVEIS)
+if resposta_busca:
+    soup_busca = parsing(resposta_busca)
+    if soup_busca:
+        links = encontrar_links(soup_busca)
         for link in links:
-            print(link)
+            resposta_anuncio = requisicao(DOMINIO + link)
+            if resposta_anuncio:
+                soup_anuncio = parsing(resposta_anuncio)
+                if soup_anuncio:
+                    print(encontrar_telefones(soup_anuncio))
