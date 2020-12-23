@@ -11,7 +11,6 @@ URL_AUTOMOVEIS = "https://django-anuncios.solyd.com.br/automoveis/"
 LINKS = []
 TELEFONES = []
 
-
 def requisicao(url):
     try:
         res = requests.get(url)
@@ -90,16 +89,15 @@ if __name__ == "__main__":
         if soup_busca:
             LINKS = encontrar_links(soup_busca)
 
-            thread_1 = threading.Thread(target=descobrir_telefones)
-            thread_2 = threading.Thread(target=descobrir_telefones)
-            thread_3 = threading.Thread(target=descobrir_telefones)
-  
-            thread_1.start()
-            thread_2.start()
-            thread_3.start()
-     
-            thread_1.join()
-            thread_2.join()
-            thread_3.join()
+            THREADS = []
+            for i in range(10):
+                t = threading.Thread(target=descobrir_telefones)
+                THREADS.append(t)
+
+            for t in THREADS:
+                t.start()
+
+            for t in THREADS:
+                t.join()
 
             print(TELEFONES)
