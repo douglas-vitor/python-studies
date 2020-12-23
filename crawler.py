@@ -79,7 +79,17 @@ def descobrir_telefones():
                     for telefone in telefones:
                         print("Telefone encontrado: ", telefone)
                         TELEFONES.append(telefone)
+                        salvar_telefone(telefone)
 
+
+def salvar_telefone(telefone):
+    string_telefone = "{} {}{}\n".format(telefone[0], telefone[1], telefone[2])
+    try:
+        with open("telefones.csv", "a") as arquivo:
+            arquivo.write(str(string_telefone))
+    except Exception as err:
+        print("Erro ao salvar arquivo.")
+        print(err)
 
 
 if __name__ == "__main__":
@@ -99,5 +109,3 @@ if __name__ == "__main__":
 
             for t in THREADS:
                 t.join()
-
-            print(TELEFONES)
