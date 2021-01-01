@@ -2,18 +2,27 @@ import ssl
 import json
 
 import websocket
+import bitstamp.client
+
+import credenciais
 
 #Bitstamp API Documentation
 #https://www.bitstamp.net/api/
 #https://www.bitstamp.net/websocket/v2/
 
 
-def comprar():
-    pass
+def cliente():
+    return bitstamp.client.Trading(username=credenciais.USERNAME, key=credenciais.KEY, secret=credenciais.SECRET)
 
 
-def vender():
-    pass
+def comprar(quantidade):
+    trading_client = cliente()
+    trading_client.buy_market_order(quantidade)
+
+
+def vender(quantidade):
+    trading_client = cliente()
+    trading_client.sell_market_order(quantidade)
 
 
 def ao_abrir(ws):
