@@ -1,7 +1,7 @@
 __pycache__/
+site_django/*
+site_django/manage.py
 database.db
 Pokemon_game/database.db
 Pokemon_game/__pycache__/
 credenciais.py
-Site_django/anuncios/*
-Site_django/Site_django/*
