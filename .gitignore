@@ -1,5 +1,5 @@
 __pycache__/
-site_django/*
+projeto6/
 site_django/manage.py
 database.db
 Pokemon_game/database.db
