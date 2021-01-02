@@ -3,4 +3,5 @@ database.db
 Pokemon_game/database.db
 Pokemon_game/__pycache__/
 credenciais.py
-Site_django/env_projeto6/
+Site_django/anuncios/*
+Site_django/Site_django/*
