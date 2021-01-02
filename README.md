@@ -10,3 +10,4 @@
 2. Pokemon game
 3. Infos de países
 4. Crawler de telefones
+5. Bot de negociações de bitcoin(BTC)
