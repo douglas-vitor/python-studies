@@ -1,5 +1,6 @@
 __pycache__/
 projeto6/db.sqlite3
+projeto6/Anuncios/migrations/*
 projeto6/projeto6/settings.py
 database.db
 Pokemon_game/database.db
