@@ -1,3 +1,4 @@
 from django.contrib import admin
+from Anuncios import models
 
-# Register your models here.
+admin.site.register(models.Categoria)
