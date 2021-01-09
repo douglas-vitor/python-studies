@@ -1,12 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site Django</title>
-</head>
-<body>
-    <h1>Olá mundo!</h1>
-    <p>Meu primeiro template</p>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Django Anúncios</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
+    </head>
+    <body>
+        <div class="ui attached menu">
+            <div class="ui container">
+                <a class="item">Django Anúncios</a>
+                <div class="right menu">
+                    <div class="ui right aligned category search item">
+                        <div class="ui transparent icon input">
+                            <input class="prompt" type="text" placeholder="Pesquisar...">
+                            <i class="search link icon"></i>
+                        </div>
+                        <div class="results"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="ui hidden divider"></div>
+
+        <div class="ui container">
+            <div class="ui stackable grid">
+                <div class="four wide column">
+                    <div class="ui vertical fluid menu">
+                        <a class="item">
+                            Imóveis
+                        </a>
+                        <a class="item">
+                            Informática
+                        </a>
+                    </div>
+                </div>
+
+                <div class="twelve wide column">
+                    <div class="ui three column stackable grid">
+
+                        <div class="column">
+                            <div class="ui fluid card">
+                                <div class="image">
+                                    <img src="static/img/imagem.jpg">
+                                </div>
+                                <div class="content">
+                                    <a class="header">Chevette 74</a>
+                                </div>
+                                <div class="extra content">
+                                    R$ 22,00
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="ui fluid card">
+                                <div class="image">
+                                    <img src="static/img/imagem.jpg">
+                                </div>
+                                <div class="content">
+                                    <a class="header">Chevette 74</a>
+                                </div>
+                                <div class="extra content">
+                                    R$ 22,00
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
