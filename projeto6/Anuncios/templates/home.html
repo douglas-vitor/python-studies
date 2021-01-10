@@ -32,12 +32,13 @@
             <div class="ui stackable grid">
                 <div class="four wide column">
                     <div class="ui vertical fluid menu">
+
+                        {% for categoria in categorias %}
                         <a class="item">
-                            Imóveis
+                            {{categoria}}
                         </a>
-                        <a class="item">
-                            Informática
-                        </a>
+                        {% endfor %}
+                        
                     </div>
                 </div>
 
