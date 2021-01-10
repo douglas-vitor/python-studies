@@ -45,33 +45,22 @@
                 <div class="twelve wide column">
                     <div class="ui three column stackable grid">
 
+                        {% for anuncio in anuncios %}
                         <div class="column">
                             <div class="ui fluid card">
                                 <div class="image">
                                     <img src="{% static 'Anuncios/img/imagem.png' %}">
                                 </div>
                                 <div class="content">
-                                    <a class="header">Chevette 74</a>
+                                    <a class="header">{{anuncio.titulo}}</a>
                                 </div>
                                 <div class="extra content">
-                                    R$ 22,00
+                                    R$ {{ anuncio.preco }}
                                 </div>
                             </div>
                         </div>
-
-                        <div class="column">
-                            <div class="ui fluid card">
-                                <div class="image">
-                                    <img src="{% static 'Anuncios/img/imagem.png' %}">
-                                </div>
-                                <div class="content">
-                                    <a class="header">Gol 2001</a>
-                                </div>
-                                <div class="extra content">
-                                    R$ 22,00
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
+                        
 
                     </div>
                 </div>
