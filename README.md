@@ -11,3 +11,4 @@
 3. Infos de países
 4. Crawler de telefones
 5. Bot de negociações de bitcoin(BTC)
+6. Site de anúncios em Django(MVP)
