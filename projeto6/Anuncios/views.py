@@ -6,7 +6,7 @@ from .models import Anuncio
 
 def home(request):
     categorias = Categoria.objects.all()
-    anuncios = Anuncio.objects.all()
+    ultimos_anuncios = Anuncio.objects.all()[:12]
 
     return render(request, 'home.html', {'categorias': categorias,
-    'anuncios': anuncios})
+    'anuncios': ultimos_anuncios})
