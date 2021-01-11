@@ -41,6 +41,18 @@ class Snake:
         elif self.direcao == "baixo":
             self.corpo[0] = (x, y + self.velocidade)
 
+    def cima(self):
+        self.direcao = "cima"
+
+    def baixo(self):
+        self.direcao = "baixo"
+
+    def direita(self):
+        self.direcao = "direita"
+
+    def esquerda(self):
+        self.direcao = "esquerda"
+
 
 class Frutinha:
     cor = (139, 0, 0)
@@ -66,6 +78,17 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             exit()
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                cobrinha.cima()
+            if event.key == pygame.K_DOWN:
+                cobrinha.baixo()
+            if event.key == pygame.K_LEFT:
+                cobrinha.esquerda()
+            if event.key == pygame.K_RIGHT:
+                cobrinha.direita()
+
         
     cobrinha.andar()
     screen.fill(verde)
