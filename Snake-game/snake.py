@@ -1,3 +1,5 @@
+import random
+
 import pygame
 
 pygame.init()
@@ -10,13 +12,17 @@ screen.fill(verde)
 pygame.display.update()
 
 class frutinha:
-    cor = (255, 0, 0)
-    posicao = (200, 200)
+    cor = (139, 0, 0)
     tamanho = (10, 10)
 
     def __init__(self):
         self.textura = pygame.Surface(self.tamanho)
         self.textura.fill(self.cor)
+
+        x = random.randint(0, 49) * 10
+        y = random.randint(0, 49) * 10
+        self.posicao = (x, y)
+
 
 frutinha = frutinha()
 
