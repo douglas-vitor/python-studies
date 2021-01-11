@@ -12,7 +12,7 @@ verde = (46, 139, 87)
 class Snake:
     cor = (0, 0, 0)
     tamanho = (10, 10)
-    velocidade = 0.09
+    velocidade = 0.10 #padrao do curso é 10
 
     def __init__(self):
         self.textura = pygame.Surface(self.tamanho)
@@ -32,13 +32,16 @@ class Snake:
         y = cabeca[1]
 
         if self.direcao == "direita":
-            self.corpo[0] = (x + self.velocidade, y)
+            self.corpo.insert(0, (x + self.velocidade, y))
         elif self.direcao == "esquerda":
-            self.corpo[0] = (x - self.velocidade, y)
+            self.corpo.insert(0, (x - self.velocidade, y))
         elif self.direcao == "cima":
-            self.corpo[0] = (x, y - self.velocidade)
+            self.corpo.insert(0, (x, y - self.velocidade))
         elif self.direcao == "baixo":
-            self.corpo[0] = (x, y + self.velocidade)
+            self.corpo.insert(0, (x, y + self.velocidade))
+
+        self.corpo.pop(-1)
+        print(self.corpo)
 
     def cima(self):
         if self.direcao != "baixo":
