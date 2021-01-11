@@ -6,14 +6,13 @@ pygame.init()
 
 resolucao = (500, 500)
 screen = pygame.display.set_mode(resolucao)
-
 verde = (46, 139, 87)
 
 
 class Snake:
     cor = (0, 0, 0)
     tamanho = (10, 10)
-    velocidade = 10
+    velocidade = 0.09
 
     def __init__(self):
         self.textura = pygame.Surface(self.tamanho)
@@ -42,16 +41,20 @@ class Snake:
             self.corpo[0] = (x, y + self.velocidade)
 
     def cima(self):
-        self.direcao = "cima"
+        if self.direcao != "baixo":
+            self.direcao = "cima"
 
     def baixo(self):
-        self.direcao = "baixo"
+        if self.direcao != "cima":
+            self.direcao = "baixo"
 
     def direita(self):
-        self.direcao = "direita"
+        if self.direcao != "esquerda":
+            self.direcao = "direita"
 
     def esquerda(self):
-        self.direcao = "esquerda"
+        if self.direcao != "direita":
+            self.direcao = "esquerda"
 
 
 class Frutinha:
@@ -82,20 +85,22 @@ while True:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
                 cobrinha.cima()
-            if event.key == pygame.K_DOWN:
+                break
+            elif event.key == pygame.K_DOWN:
                 cobrinha.baixo()
-            if event.key == pygame.K_LEFT:
+                break
+            elif event.key == pygame.K_LEFT:
                 cobrinha.esquerda()
-            if event.key == pygame.K_RIGHT:
+                break
+            elif event.key == pygame.K_RIGHT:
                 cobrinha.direita()
+                break
 
         
     cobrinha.andar()
     screen.fill(verde)
 
-
     frutinha.blit(screen)
     cobrinha.blit(screen)
 
-    
     pygame.display.update()
