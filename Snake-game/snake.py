@@ -3,12 +3,9 @@ import random
 import pygame
 
 pygame.init()
-
 resolucao = (500, 500)
 screen = pygame.display.set_mode(resolucao)
-
 clock = pygame.time.Clock()
-
 verde = (46, 139, 87)
 
 
@@ -67,6 +64,11 @@ class Snake:
     def comer(self):
         self.corpo.append((0, 0))
 
+    def colisao_parede(self):
+        cabeca = self.corpo[0]
+        x = cabeca[0]
+        y = cabeca[1]
+        return x < 0 or y < 0 or x > 490 or y > 490
 
 
 class Frutinha:
@@ -83,8 +85,6 @@ class Frutinha:
 
     def blit(self, screen):
         screen.blit(self.textura, self.posicao)
-
-    
 
 
 
@@ -116,7 +116,11 @@ while True:
         cobrinha.comer()
         frutinha = Frutinha()
 
+    if cobrinha.colisao_parede():
+        cobrinha = Snake()
+
     cobrinha.andar()
+
     screen.fill(verde)
 
     frutinha.blit(screen)
