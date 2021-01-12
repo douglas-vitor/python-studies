@@ -5,6 +5,7 @@ import pygame
 pygame.init()
 resolucao = (500, 500)
 screen = pygame.display.set_mode(resolucao)
+pygame.display.set_caption("Snake")
 clock = pygame.time.Clock()
 verde = (46, 139, 87)
 
@@ -21,6 +22,8 @@ class Snake:
         self.corpo = [(100, 100), (90, 100), (80, 100)]
 
         self.direcao = "direita"
+
+        self.pontos = 0
 
     def blit(self, screen):
         for posicao in self.corpo:
@@ -63,6 +66,9 @@ class Snake:
 
     def comer(self):
         self.corpo.append((0, 0))
+        self.pontos += 1
+        pygame.display.set_caption("Snake | Pontos : {}".format(self.pontos))
+
 
     def colisao(self):
         cabeca = self.corpo[0]
