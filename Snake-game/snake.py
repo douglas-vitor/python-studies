@@ -61,6 +61,13 @@ class Snake:
         if self.direcao != "direita":
             self.direcao = "esquerda"
 
+    def colisao_frutinha(self, frutinha):
+        return self.corpo[0] == frutinha.posicao
+
+    def comer(self):
+        self.corpo.append((0, 0))
+
+
 
 class Frutinha:
     cor = (139, 0, 0)
@@ -77,13 +84,15 @@ class Frutinha:
     def blit(self, screen):
         screen.blit(self.textura, self.posicao)
 
+    
+
 
 
 frutinha = Frutinha()
 cobrinha = Snake()
 
 while True:
-    clock.tick(60)
+    clock.tick(30)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -103,7 +112,10 @@ while True:
                 cobrinha.direita()
                 break
 
-        
+    if cobrinha.colisao_frutinha(frutinha):
+        cobrinha.comer()
+        frutinha = Frutinha()
+
     cobrinha.andar()
     screen.fill(verde)
 
